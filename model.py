@@ -23,15 +23,14 @@ def generateTimestepData(model: AgentModel):
     model.set_graph(graph)
 
 
-class ModelBuilder:
-    def __init__(self) -> None:
-        pass
-
-    def generateInitialData(self, model: AgentModel):
+class ModelFunctions:
+    @staticmethod
+    def generateInitialData(model: AgentModel):
         initial_data = {"wealth": 1}
         return initial_data
 
-    def generateTimestepData(self, model: AgentModel):
+    @staticmethod
+    def generateTimestepData(model: AgentModel):
         graph = model.get_graph()
 
         for _node, node_data in graph.nodes(data=True):
@@ -42,11 +41,10 @@ class ModelBuilder:
                     node_data["wealth"] -= 1
         model.set_graph(graph)
 
-    def constructModel(self) -> AgentModel:
-
+    @staticmethod
+    def constructModel() -> AgentModel:
         model = AgentModel()
-        model.set_initial_data_function(generateInitialData)
-        model.set_timestep_function(generateTimestepData)
+        model.set_initial_data_function(ModelFunctions.generateInitialData)
+        model.set_timestep_function(ModelFunctions.generateTimestepData)
         model.update_parameters({"num_nodes": 3})
-
         return model
