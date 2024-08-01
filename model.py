@@ -23,6 +23,14 @@ def generateTimestepData(model: AgentModel):
     model.set_graph(graph)
 
 
+def constructModel() -> AgentModel:
+    model = AgentModel()
+    model.set_initial_data_function(generateInitialData)
+    model.set_timestep_function(generateTimestepData)
+    model.update_parameters({"num_nodes": 3})
+    return model
+
+
 class ModelFunctions:
     @staticmethod
     def generateInitialData(model: AgentModel):
