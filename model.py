@@ -33,12 +33,12 @@ def constructModel() -> AgentModel:
 
 class ModelFunctions:
     @staticmethod
-    def generateInitialData(model: AgentModel):
+    def setGenerateInitialDataFunction(model: AgentModel):
         initial_data = {"wealth": 1}
         return initial_data
 
     @staticmethod
-    def generateTimestepData(model: AgentModel):
+    def setTimestepDataFunction(model: AgentModel):
         graph = model.get_graph()
 
         for _node, node_data in graph.nodes(data=True):
